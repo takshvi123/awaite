@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await Example</title>
+</head>
+
+<body>
+    <h1>Async/Await Example</h1>
+    <div id="output"></div>
+
+    <script>
+        // Define an async function to fetch JSON
+        async function fetchData() {
+            // Tell the program to wait until data comes from this URL
+            var response = await fetch('https://jsonplaceholder.typicode.com/users');
+
+            // Tell the program to wait until the data is converted to JSON
+            var data = await response.json();
+
+            // Display the data on the webpage
+            var outputDiv = document.getElementById("output");
+            data.forEach(user => {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = `Name: ${user.name}, Email: ${user.email}`;
+                outputDiv.appendChild(paragraph);
+            });
+        }
+
+        // Call the async function
+        fetchData();
+    </script>
+</body>
+
+</html>
